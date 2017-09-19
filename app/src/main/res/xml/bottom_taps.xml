@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+<tab
+    id="@+id/tab_home"
+    title="极客"
+    >
+</tab>
+    <tab
+        id="@+id/tab_girl"
+        title="美女"
+        >
+    </tab>
+    <tab
+        id="@+id/tab_collec"
+        title="收藏"
+        >
+
+    </tab>
+</tabs>

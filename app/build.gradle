@@ -1,8 +1,12 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         applicationId "rubic.gankandroid"
         minSdkVersion 15
@@ -16,6 +20,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+    }
+    dataBinding {
+        enabled = true
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }
 }
 
@@ -24,7 +35,33 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    //support lib
+    compile rootProject.ext.supportLibAppCompat
+    compile rootProject.ext.supportLibDesign
+    //support
+    compile rootProject.ext.cardview
+    compile rootProject.ext.archRuntime
+    compile rootProject.ext.archExtension
+    annotationProcessor rootProject.ext.archCompiler
+
+    compile rootProject.ext.roomRuntime
+    annotationProcessor rootProject.ext.roomCompiler
+
+    compile rootProject.ext.okhttp
+    compile rootProject.ext.retrofit
+    compile rootProject.ext.gsonConverter
+
+    //dagger
+    annotationProcessor rootProject.ext.daggerCompiler
+    compile rootProject.ext.dagger
+    compile rootProject.ext.daggerAndroid
+    compile rootProject.ext.daggerAndroidSupport
+    annotationProcessor rootProject.ext.daggerAndroidProcessor
+
+    //ui
+    compile rootProject.ext.glide
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.roughike:bottom-bar:2.3.1' //底部导航
 }
